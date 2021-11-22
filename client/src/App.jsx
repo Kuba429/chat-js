@@ -1,19 +1,20 @@
-import React from "react";
-import { io } from "socket.io-client";
+import React, { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
-
+import { io } from "socket.io-client";
+import Test from "./components/Test";
+import { ContextWrapper } from "./ContextWrapper";
 export default function App() {
-    const socket = io();
-    socket.on("connect", () => {
-        console.log(socket.id);
-    });
+    const socket = io("ws://localhost:5000");
 
     return (
-        <div>
-            <h1>App</h1>
-            <Routes>
-                <Route path="/" element={<h1>Home</h1>} />
-            </Routes>
-        </div>
+        <ContextWrapper>
+            <div>
+                <h1>App</h1>
+                <Routes>
+                    <Route path="/" element={<h1>Home</h1>} />
+                    <Route path="/test" element={<Test />} />
+                </Routes>
+            </div>
+        </ContextWrapper>
     );
 }
