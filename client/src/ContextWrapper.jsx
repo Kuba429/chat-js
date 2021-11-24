@@ -1,17 +1,22 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import LoginModal from "./components/LoginModal";
 
 const MyContext = createContext();
 export function ContextWrapper({ children }) {
-    const [usernameState, setUsernameState] = useState("guest");
-    const [loginModalState, setLoginModalState] = useState(true);
+    //username stored in local storage
+    const lsUsername = localStorage.getItem("username");
+    const [usernameState, setUsernameState] = useState(lsUsername || "guest");
+    const [loginModalState, setLoginModalState] = useState(!lsUsername);
     const setUsername = (newUsername) => {
+        if (newUsername.length < 1) newUsername = "guest";
         setUsernameState(newUsername);
+        localStorage.setItem("username", newUsername);
         setLoginModalState(false);
     };
+
     return (
         <MyContext.Provider value={{ usernameState, setUsernameState }}>
-            {loginModalState && <LoginModal setUsername={setUsername}/>}
+            {loginModalState && <LoginModal setUsername={setUsername} />}
             {children}
         </MyContext.Provider>
     );
