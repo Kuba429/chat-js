@@ -13,7 +13,12 @@ export default function LoginModal({ setUsername }) {
                 <h1>Enter your username</h1>
 
                 <form onSubmit={setUsernameHandler}>
-                    <input ref={inputRef} type="text" className="zoom-input" />
+                    <input
+                        ref={inputRef}
+                        type="text"
+                        className="zoom-input"
+                        defaultValue={localStorage.getItem("username") || ""}
+                    />
                     <button type="submit" className="zoom-button">
                         Go
                     </button>
