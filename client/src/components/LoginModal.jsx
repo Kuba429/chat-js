@@ -20,7 +20,7 @@ export default function LoginModal({ setUsername }) {
                         defaultValue={localStorage.getItem("username") || ""}
                     />
                     <button type="submit" className="zoom-button">
-                        Go
+                        <ion-icon name="arrow-forward-outline"></ion-icon>
                     </button>
                 </form>
             </div>
