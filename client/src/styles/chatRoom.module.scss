@@ -1,0 +1,34 @@
+@import "variables.module.scss";
+
+.chatRoom {
+    padding: 0px;
+    margin: 0px;
+    height: 100%;
+    background: $neutral;
+    display: flex;
+    flex-direction: column;
+
+    .container,
+    .inputPanel {
+        padding: 0rem 2rem;
+    }
+
+    .container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .messages {
+            display: flex;
+            flex-direction: column;
+            margin-top: 1rem;
+            gap: 1rem;
+            width: 70%;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .inputPanel {
+        height: 5rem;
+    }
+}

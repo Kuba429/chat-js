@@ -11,12 +11,12 @@ export default function App() {
     return (
         <ContextWrapper>
             <Navbar/>
-            <div>
+       
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/:roomId" element={<ChatRoom />} />
                 </Routes>
-            </div>
+          
         </ContextWrapper>
     );
 }

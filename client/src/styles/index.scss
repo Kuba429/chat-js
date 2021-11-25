@@ -1,7 +1,9 @@
 @import "variables.module.scss";
 @import "loginModal.module.scss";
 @import "effects.module.scss";
+@import "chatRoom.module.scss";
 @import "navbar.module.scss";
+@import "message.module.scss";
 * {
     margin: 0;
     padding: 0;
@@ -9,4 +11,11 @@
 
     font-family: "Lato", sans-serif;
     color: $dark;
+}
+
+#root {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: $neutral;
 }

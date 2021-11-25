@@ -1,0 +1,35 @@
+@import "variables.module.scss";
+
+.message {
+    display: flex;
+    flex-direction: column;
+
+    background: $light;
+    padding: 0.6rem;
+    width: fit-content;
+    max-width: 80%;
+    border-radius: 8px;
+    .upperPart {
+        display: flex;
+        gap: 6px;
+        .author {
+            font-size: 1.4rem;
+        }
+        .time {
+            padding-top: 0.52rem;
+            font-size: 0.9rem;
+            opacity: 60%;
+        }
+    }
+}
+
+.message.own {
+    align-self: flex-end;
+    background: $dark;
+    * {
+        color: $neutral;
+    }
+    .upperPart {
+        flex-direction: row-reverse;
+    }
+}
