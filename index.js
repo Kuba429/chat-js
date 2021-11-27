@@ -21,4 +21,12 @@ io.on("connection", (socket) => {
     socket.on("disconnect", () => {
         console.log("user disconnected");
     });
+
+    socket.on("join", (data) => {
+        socket.join(data);
+        console.log(data);
+    });
+    socket.on("sendMessage", (data) => {
+        io.to(data.roomId).emit("receiveMessage", data.message);
+    });
 });
