@@ -1,18 +1,19 @@
 import React from "react";
 
-export default function Message({isOwn}) {
+export default function Message({ messageData }) {
+    const isOwn = false;
+    const date = new Date(messageData.time);
+    const processedTime = `${date.getHours()}:${date.getMinutes()}`;
+
     return (
-        <div className={`message  ${isOwn ? 'own':''}`}>
+        <div className={`message  ${isOwn ? "own" : ""}`}>
             <div className="upperPart">
-                <span className="author">Autor</span>
-                <span className="time">8:12</span>
+                <span className="author">{messageData.author}</span>
+                <span className="time">
+                    {processedTime}
+                </span>
             </div>
-            <div className="bottomPart">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Placeat corporis vel dicta molestiae explicabo nisi excepturi,
-                commodi in, illo vero facilis sint! Magnam unde voluptates, in
-                numquam quod doloremque eum.
-            </div>
+            <div className="bottomPart">{messageData.content}</div>
         </div>
     );
 }
