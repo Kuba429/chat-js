@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import MyContext from "../ContextWrapper";
 
 export default function Message({ messageData }) {
-    const isOwn = false;
+    const { socket } = useContext(MyContext);
+    const isOwn = socket.id === messageData.authorId;
     const date = new Date(messageData.time);
     const processedTime = `${date.getHours()}:${date.getMinutes()}`;
 
@@ -9,9 +11,7 @@ export default function Message({ messageData }) {
         <div className={`message  ${isOwn ? "own" : ""}`}>
             <div className="upperPart">
                 <span className="author">{messageData.author}</span>
-                <span className="time">
-                    {processedTime}
-                </span>
+                <span className="time">{processedTime}</span>
             </div>
             <div className="bottomPart">{messageData.content}</div>
         </div>

@@ -11,6 +11,7 @@ export default function ChatRoom() {
     const [messagesState, setMessagesState] = useState([
         {
             author: "author",
+            authorId: v4(),
             content: "lorem ipsum asdasdasd  asd q21e20 8as 89dasd 7awd7",
             time: new Date().getTime(),
         },
@@ -20,6 +21,7 @@ export default function ChatRoom() {
         e.preventDefault();
         let message = {
             author: context.usernameState,
+            authorId: context.socket.id,
             content: inputRef.current.value,
             time: new Date().getTime(),
         };
