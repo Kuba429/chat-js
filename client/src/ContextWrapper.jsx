@@ -1,3 +1,4 @@
+import { io } from "socket.io-client";
 import React, { createContext, useEffect, useState } from "react";
 import LoginModal from "./components/LoginModal";
 
@@ -7,6 +8,7 @@ export function ContextWrapper({ children }) {
     const lsUsername = localStorage.getItem("username");
     const [usernameState, setUsernameState] = useState(lsUsername || "guest");
     const [loginModalState, setLoginModalState] = useState(!lsUsername);
+    const socket = io("ws://localhost:5000");
 
     const setUsername = (newUsername) => {
         if (newUsername.length < 1) newUsername = "guest";
@@ -14,10 +16,11 @@ export function ContextWrapper({ children }) {
         localStorage.setItem("username", newUsername);
         setLoginModalState(false);
     };
-     
 
     return (
-        <MyContext.Provider value={{ usernameState,setUsername,setLoginModalState }}>
+        <MyContext.Provider
+            value={{ usernameState, setUsername, setLoginModalState, socket }}
+        >
             {loginModalState && <LoginModal setUsername={setUsername} />}
             {children}
         </MyContext.Provider>
