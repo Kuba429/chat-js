@@ -10,8 +10,8 @@
     "scripts": {
         "dev": "nodemon index.js",
         "start": "node index.js",
-        "build-client": "cd client && yarn build",
-        "build": "yarn build-client && rm -rf static && mv client/dist static"
+        "build-client": "cd client && yarn install && yarn build",
+        "build": "yarn install && yarn build-client && rm -rf static && mv client/dist static"
     },
     "devDependencies": {
         "nodemon": "^2.0.15"
