@@ -19,12 +19,11 @@ io.on("connection", (socket) => {
     console.log("user connected");
 
     socket.on("disconnect", () => {
-        console.log("user disconnected");
+        socket.removeAllListeners();
     });
 
     socket.on("join", (data) => {
         socket.join(data);
-        console.log(data);
     });
     socket.on("sendMessage", (data) => {
         io.to(data.roomId).emit("receiveMessage", data.message);
