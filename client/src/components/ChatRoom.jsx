@@ -24,9 +24,8 @@ export default function ChatRoom() {
     };
 
     context.socket.emit(`join`, roomId);
-    context.socket.off('receiveMessage')
+    context.socket.off("receiveMessage");
     context.socket.once("receiveMessage", (message) => {
-        console.log("receiveMessage");
         setMessagesState([...messagesState, message]);
     });
 
@@ -40,8 +39,10 @@ export default function ChatRoom() {
                 </div>
             </div>
             <form className="inputPanel" onSubmit={submitHandler}>
-                <input type="text" ref={inputRef} />
-                <button type="submit">Send</button>
+                <input type="text" placeholder='Type here...' ref={inputRef} />
+                <button type="submit">
+                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                </button>
             </form>
         </div>
     );
