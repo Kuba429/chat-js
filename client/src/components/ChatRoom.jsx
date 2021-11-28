@@ -24,6 +24,7 @@ export default function ChatRoom() {
     };
 
     context.socket.emit(`join`, roomId);
+    context.socket.off('receiveMessage')
     context.socket.once("receiveMessage", (message) => {
         console.log("receiveMessage");
         setMessagesState([...messagesState, message]);
