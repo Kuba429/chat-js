@@ -5,7 +5,7 @@ const PORT = 5000;
 const { Server } = require("socket.io");
 
 app.use(express.static("static"));
-app.get("*", (req, res) => {
+app.get("/r/*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "static", "index.html"));
 });
 
