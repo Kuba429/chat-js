@@ -8,7 +8,7 @@ export function ContextWrapper({ children }) {
     const lsUsername = localStorage.getItem("username");
     const [usernameState, setUsernameState] = useState(lsUsername || "guest");
     const [loginModalState, setLoginModalState] = useState(!lsUsername);
-    const socket = io("ws://localhost:5000");
+    const socket = io("ws://fajnychat.herokuapp.com/");
 
     const setUsername = (newUsername) => {
         if (newUsername.length < 1) newUsername = "guest";
