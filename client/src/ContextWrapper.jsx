@@ -8,8 +8,16 @@ export function ContextWrapper({ children }) {
     const lsUsername = localStorage.getItem("username");
     const [usernameState, setUsernameState] = useState(lsUsername || "guest");
     const [loginModalState, setLoginModalState] = useState(!lsUsername);
-    const socket = io("ws://fajnychat.herokuapp.com/");
+    const SERVER = "ws://fajnychat.herokuapp.com/";
+    const socket = io(SERVER, {
+        origins: "*",
+        transports: ["websocket"],
+    });
 
+    socket.on("connect_error", (err) => {
+        console.log(err);
+        // console.log(`connect_error due to ${err.message}`);
+    });
     const setUsername = (newUsername) => {
         if (newUsername.length < 1) newUsername = "guest";
         setUsernameState(newUsername);
