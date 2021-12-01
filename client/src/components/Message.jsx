@@ -5,7 +5,12 @@ export default function Message({ messageData }) {
     const { socket } = useContext(MyContext);
     const isOwn = socket.id === messageData.authorId;
     const date = new Date(messageData.time);
-    const processedTime = `${date.getHours()}:${date.getMinutes()}`;
+    let hour = date.getHours().toString();
+    let minute = date.getMinutes().toString();
+    if (hour.length < 2) hour = "0" + hour;
+    if (minute.length < 2) minute = "0" + minute;
+    // const processedTime = `${hour}:${minute}`;
+    const processedTime = hour + ":" + minute;
 
     return (
         <div className={`message  ${isOwn ? "own" : ""}`}>
