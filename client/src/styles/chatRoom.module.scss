@@ -23,7 +23,7 @@
         .messages {
             overflow: auto;
             display: flex;
-            flex-direction: column;
+            flex-direction: column-reverse;
             margin-top: 1rem;
             padding-right: 5px;
             gap: 1rem;

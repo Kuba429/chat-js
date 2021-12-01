@@ -26,7 +26,7 @@ export default function ChatRoom() {
     context.socket.emit(`join`, roomId);
     context.socket.off("receiveMessage");
     context.socket.once("receiveMessage", (message) => {
-        setMessagesState([...messagesState, message]);
+        setMessagesState([message, ...messagesState]);
     });
 
     return (
@@ -39,7 +39,7 @@ export default function ChatRoom() {
                 </div>
             </div>
             <form className="inputPanel" onSubmit={submitHandler}>
-                <input type="text" placeholder='Type here...' ref={inputRef} />
+                <input type="text" placeholder="Type here..." ref={inputRef} />
                 <button type="submit">
                     <ion-icon name="arrow-forward-outline"></ion-icon>
                 </button>
