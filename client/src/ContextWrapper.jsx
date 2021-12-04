@@ -9,8 +9,8 @@ export function ContextWrapper({ children }) {
     const [usernameState, setUsernameState] = useState(lsUsername || "guest");
     const [loginModalState, setLoginModalState] = useState(false);
     let roomId;
-    // const SERVER = "ws://chat-ws-api.herokuapp.com/";
-    const SERVER = "ws://localhost:5000";
+    const SERVER = "ws://chat-ws-api.herokuapp.com/";
+    // const SERVER = "ws://localhost:5000";
     const socket = io(SERVER, {
         origins: "*",
         transports: ["websocket"],

@@ -22,7 +22,7 @@ export default function Navbar() {
                 {context.usernameState}
             </span>
             <span className="onlineUsers" onClick={checkOnlineHandler}>
-                In room: <span>{onlineCount || "0"}</span>
+                Online: <span>{onlineCount || "0"}</span>
             </span>
         </nav>
     );
