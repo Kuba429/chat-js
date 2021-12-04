@@ -19,7 +19,7 @@ export default function LoginModal({ setUsername }) {
                         className="zoom-input"
                         defaultValue={localStorage.getItem("username") || ""}
                     />
-                    <button type="submit" className="zoom-button">
+                    <button type="submit" className="button">
                         <ion-icon name="arrow-forward-outline"></ion-icon>
                     </button>
                 </form>
