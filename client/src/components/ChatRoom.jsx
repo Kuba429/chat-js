@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router";
 import MyContext from "../ContextWrapper";
+import Navbar from "./Navbar";
 import Message from "./Message";
 import { v4 } from "uuid";
 
@@ -30,20 +31,28 @@ export default function ChatRoom() {
     });
 
     return (
-        <div className="chatRoom">
-            <div className="container">
-                <div className="messages">
-                    {messagesState.map((item) => {
-                        return <Message key={v4()} messageData={item} />;
-                    })}
+        <>
+            <Navbar />
+
+            <div className="chatRoom">
+                <div className="container">
+                    <div className="messages">
+                        {messagesState.map((item) => {
+                            return <Message key={v4()} messageData={item} />;
+                        })}
+                    </div>
                 </div>
+                <form className="inputPanel" onSubmit={submitHandler}>
+                    <input
+                        type="text"
+                        placeholder="Type here..."
+                        ref={inputRef}
+                    />
+                    <button type="submit">
+                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                    </button>
+                </form>
             </div>
-            <form className="inputPanel" onSubmit={submitHandler}>
-                <input type="text" placeholder="Type here..." ref={inputRef} />
-                <button type="submit">
-                    <ion-icon name="arrow-forward-outline"></ion-icon>
-                </button>
-            </form>
-        </div>
+        </>
     );
 }
