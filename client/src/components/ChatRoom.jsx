@@ -24,16 +24,24 @@ export default function ChatRoom() {
         context.socket.emit(`sendMessage`, { roomId, message });
     };
 
-    context.socket.emit(`join`, roomId);
+    context.socket.emit("join", roomId);
     context.socket.off("receiveMessage");
     context.socket.once("receiveMessage", (message) => {
         setMessagesState([message, ...messagesState]);
     });
 
+    useEffect(() => {
+        if (
+            context.usernameState.length < 1 ||
+            context.usernameState === "guest"
+        ) {
+            context.setLoginModalState(true);
+        }
+    }, []);
+
     return (
         <>
             <Navbar />
-
             <div className="chatRoom">
                 <div className="container">
                     <div className="messages">

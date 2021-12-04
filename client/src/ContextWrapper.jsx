@@ -7,8 +7,8 @@ export function ContextWrapper({ children }) {
     //username stored in local storage
     const lsUsername = localStorage.getItem("username");
     const [usernameState, setUsernameState] = useState(lsUsername || "guest");
-    const [loginModalState, setLoginModalState] = useState(!lsUsername);
-    let roomId
+    const [loginModalState, setLoginModalState] = useState(false);
+    let roomId;
     // const SERVER = "ws://chat-ws-api.herokuapp.com/";
     const SERVER = "ws://localhost:5000";
     const socket = io(SERVER, {
