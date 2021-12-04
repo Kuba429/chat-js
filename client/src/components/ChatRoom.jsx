@@ -7,9 +7,9 @@ import { v4 } from "uuid";
 export default function ChatRoom() {
     const { roomId } = useParams();
     const context = useContext(MyContext);
+    context.roomId = roomId;
     const inputRef = useRef(null);
     const [messagesState, setMessagesState] = useState([]);
-
     const submitHandler = (e) => {
         e.preventDefault();
         if (inputRef.current.value.length < 1) return;
