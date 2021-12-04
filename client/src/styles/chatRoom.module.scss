@@ -20,6 +20,7 @@
         flex-direction: column;
         overflow: hidden;
 
+
         .messages {
             overflow: auto;
             display: flex;
@@ -76,6 +77,19 @@
             justify-content: center;
             transition: all ease 0.3s;
             cursor: pointer;
+        }
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+    .chatRoom{
+        .container{
+                padding: 10px;
+            
+        }
+        .inputPanel{
+            margin: 10px 10px;
         }
     }
 }
