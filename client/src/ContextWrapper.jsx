@@ -15,6 +15,10 @@ export function ContextWrapper({ children }) {
     });
     const setUsername = (newUsername) => {
         if (newUsername.length < 1) newUsername = "guest";
+        if (newUsername.length > 12) {
+            alert("Username must be 12 or under characters");
+            return;
+        }
         setUsernameState(newUsername);
         localStorage.setItem("username", newUsername);
         setLoginModalState(false);
