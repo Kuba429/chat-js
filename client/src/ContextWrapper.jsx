@@ -1,7 +1,6 @@
-import { io } from "socket.io-client";
 import React, { createContext, useEffect, useState } from "react";
 import LoginModal from "./components/LoginModal";
-
+import socket from "./Socket";
 const MyContext = createContext();
 export function ContextWrapper({ children }) {
     //username stored in local storage
@@ -9,12 +8,6 @@ export function ContextWrapper({ children }) {
     const [usernameState, setUsernameState] = useState(lsUsername || "guest");
     const [loginModalState, setLoginModalState] = useState(false);
     let roomId;
-    const SERVER = "ws://chat-ws-api.herokuapp.com/";
-    // const SERVER = "ws://localhost:5000";
-    const socket = io(SERVER, {
-        origins: "*",
-        transports: ["websocket"],
-    });
 
     socket.on("connect_error", (err) => {
         console.log(err);
