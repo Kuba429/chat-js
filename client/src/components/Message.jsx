@@ -18,7 +18,7 @@ export default function Message({ messageData }) {
                 <span className="author">{messageData.author}</span>
                 <span className="time">{processedTime}</span>
             </div>
-            <div className="bottomPart">{messageData.content}</div>
+            <pre className="bottomPart">{messageData.content}</pre>
         </div>
     );
 }

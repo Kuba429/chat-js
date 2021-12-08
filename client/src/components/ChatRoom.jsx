@@ -21,6 +21,7 @@ export default function ChatRoom() {
             time: new Date().getTime(),
         };
         inputRef.current.value = "";
+        resizeHandler();
         context.socket.emit(`sendMessage`, { roomId, message });
     };
 
@@ -29,6 +30,22 @@ export default function ChatRoom() {
     context.socket.once("receiveMessage", (message) => {
         setMessagesState([message, ...messagesState]);
     });
+
+    const resizeHandler = () => {
+        console.log(inputRef.current.scrollHeight);
+        inputRef.current.style.height = "auto";
+        if (inputRef.current.scrollHeight <= 150) {
+            inputRef.current.style.height =
+                inputRef.current.scrollHeight + "px";
+        } else {
+            inputRef.current.style.height = "150px";
+        }
+    };
+    const keyDownHandler = (e) => {
+        if (e.keyCode === 13 && !e.shiftKey) {
+            submitHandler(e);
+        }
+    };
 
     useEffect(() => {
         if (
@@ -44,17 +61,24 @@ export default function ChatRoom() {
             <Navbar />
             <div className="chatRoom">
                 <div className="container">
-                    <div className="messages">
+                    <div className="messages customScrollbar">
                         {messagesState.map((item) => {
                             return <Message key={v4()} messageData={item} />;
                         })}
                     </div>
                 </div>
                 <form className="inputPanel" onSubmit={submitHandler}>
-                    <input
+                    <textarea
+                        className="customScrollbar"
                         type="text"
                         placeholder="Type here..."
                         ref={inputRef}
+                        rows="1"
+                        onInput={resizeHandler}
+                        onKeyDown={keyDownHandler}
+                        onScroll={() => {
+                            console.log(inputRef.current.scrollHeight);
+                        }}
                     />
                     <button type="submit">
                         <ion-icon name="arrow-forward-outline"></ion-icon>

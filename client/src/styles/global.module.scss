@@ -34,3 +34,17 @@
         color: $neutral;
     }
 }
+
+.customScrollbar {
+    &::-webkit-scrollbar {
+        width: 6px;
+        background: transparent;
+    }
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 50px;
+        background: rgba($color: $dark, $alpha: 0.4);
+    }
+}
