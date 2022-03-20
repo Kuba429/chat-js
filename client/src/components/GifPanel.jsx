@@ -26,10 +26,10 @@ const GifPanel = ({ inputRef }) => {
             {/* <SuggestionBar /> */}
             <Grid
                 key={`${channelSearch} ${term} ${activeChannel?.user.username}`}
-                columns={4}
+                columns={inputRef.current.offsetWidth > 500 ? 4 : 2}
                 width={
                     // textarea width + 2 * 36 which is FIXED width of buttons
-                    inputRef.current ? inputRef.current.offsetWidth + 2 * 36 : 0
+                    inputRef.current.offsetWidth + 2 * 36
                 }
                 fetchGifs={fetchGifs}
             />
