@@ -1,7 +1,12 @@
 import { useRef } from "react";
+import { useState } from "react";
 import GifPanelWrapper from "./GifPanel";
 
 const InputPanel = () => {
+    const [gifPanelState, setGifPanelState] = useState(false);
+    const toggleGifPanel = () => {
+        setGifPanelState(!gifPanelState);
+    };
     const inputRef = useRef(null);
     const submitHandler = (e) => {
         e.preventDefault();
@@ -46,13 +51,17 @@ const InputPanel = () => {
                 }}
             />
 
-            <button type="button">
+            <button
+                type="button"
+                className={gifPanelState ? "active" : ""}
+                onClick={toggleGifPanel}
+            >
                 <ion-icon name="accessibility-outline"></ion-icon>
             </button>
             <button type="submit">
                 <ion-icon name="arrow-forward-outline"></ion-icon>
             </button>
-            <GifPanelWrapper inputRef={inputRef} />
+            {gifPanelState && <GifPanelWrapper inputRef={inputRef} />}
         </form>
     );
 };

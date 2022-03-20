@@ -84,6 +84,14 @@
             align-self: center;
             transition: all ease 0.3s;
             cursor: pointer;
+            &.active {
+                background: $dark;
+                opacity: 90%;
+                color: white;
+                ion-icon {
+                    color: white;
+                }
+            }
         }
     }
 }
