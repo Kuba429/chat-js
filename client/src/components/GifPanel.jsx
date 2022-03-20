@@ -9,6 +9,8 @@ import {
 } from "@giphy/react-components";
 const GifPanelWrapper = ({ inputRef }) => {
     return (
+        // according to docs it's ok for the key to be exposed,
+        // can't prevent sdk components from exposing it anyway
         <SearchContextManager apiKey="k7gCvducuYIyvhzBPxTIkzpsuaxRNGbP">
             <GifPanel inputRef={inputRef} />
         </SearchContextManager>
