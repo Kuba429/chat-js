@@ -28,11 +28,20 @@
         }
     }
     .gifPanel {
+        background-color: $light;
         position: absolute;
-        height: 300px;
+        border-radius: 5px;
+        height: 35vh;
         width: 100%;
-        bottom: 100%;
+        bottom: 140%;
         overflow: auto;
+        left: 0;
+        .giphy-search-bar {
+            input {
+                background: $light;
+            }
+            margin-bottom: 3px;
+        }
         .giphy-grid {
             margin: auto;
         }
@@ -44,6 +53,7 @@
         padding: 5px;
         margin: 10px 2rem;
         display: flex;
+        gap: 10px;
         justify-content: space-between;
         align-items: center;
         border-radius: 10px;
