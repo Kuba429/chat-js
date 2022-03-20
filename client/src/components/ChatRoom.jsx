@@ -4,6 +4,7 @@ import MyContext from "../ContextWrapper";
 import Navbar from "./Navbar";
 import Message from "./Message";
 import { v4 } from "uuid";
+import GifPanelWrapper from "./GifPanel";
 
 export default function ChatRoom() {
     const { roomId } = useParams();
@@ -80,9 +81,14 @@ export default function ChatRoom() {
                             console.log(inputRef.current.scrollHeight);
                         }}
                     />
+
+                    <button type="button">
+                        <ion-icon name="accessibility-outline"></ion-icon>
+                    </button>
                     <button type="submit">
                         <ion-icon name="arrow-forward-outline"></ion-icon>
                     </button>
+                    <GifPanelWrapper inputRef={inputRef} />
                 </form>
             </div>
         </>
