@@ -56,7 +56,7 @@ const InputPanel = () => {
                 className={gifPanelState ? "active" : ""}
                 onClick={toggleGifPanel}
             >
-                <ion-icon name="accessibility-outline"></ion-icon>
+                <ion-icon name="sparkles-outline"></ion-icon>
             </button>
             <button type="submit">
                 <ion-icon name="arrow-forward-outline"></ion-icon>

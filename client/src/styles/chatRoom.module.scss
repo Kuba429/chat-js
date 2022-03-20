@@ -28,9 +28,12 @@
         }
     }
     .gifPanel {
+        resize: vertical;
         background-color: $light;
         position: absolute;
         border-radius: 5px;
+        max-height: 80vh;
+        min-height: 35vh;
         height: 35vh;
         width: 100%;
         bottom: 140%;
