@@ -31,7 +31,7 @@ const GifPanel = ({ inputRef, toggleGifPanel }) => {
             content: gif.images.fixed_width.webp,
             time: new Date().getTime(),
         };
-        context.socket.emit("sendGif", {
+        context.socket.emit("sendMessage", {
             roomId: context.roomId,
             message,
         });
