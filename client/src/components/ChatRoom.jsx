@@ -14,8 +14,12 @@ export default function ChatRoom() {
 
     context.socket.emit("join", roomId);
     context.socket.off("receiveMessage");
+    context.socket.off("receiveGif");
     context.socket.once("receiveMessage", (message) => {
         setMessagesState([message, ...messagesState]);
+    });
+    context.socket.once("receiveGif", (data) => {
+        console.log(data);
     });
 
     useEffect(() => {

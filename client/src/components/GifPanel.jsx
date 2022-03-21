@@ -7,6 +7,7 @@ import {
     SearchContextManager,
     SuggestionBar,
 } from "@giphy/react-components";
+import MyContext from "../ContextWrapper";
 const GifPanelWrapper = ({ inputRef, toggleGifPanel }) => {
     return (
         // according to docs it's ok for the key to be exposed,
@@ -20,9 +21,13 @@ const GifPanelWrapper = ({ inputRef, toggleGifPanel }) => {
 const GifPanel = ({ inputRef, toggleGifPanel }) => {
     const { fetchGifs, term, channelSearch, activeChannel } =
         useContext(SearchContext);
+    const context = useContext(MyContext);
     const gifClickHandler = (gif, e) => {
         e.preventDefault();
-        console.log(gif.embed_url);
+        context.socket.emit("sendGif", {
+            roomId: context.roomId,
+            gifUrl: gif.embed_url,
+        });
         toggleGifPanel();
     };
     return (
