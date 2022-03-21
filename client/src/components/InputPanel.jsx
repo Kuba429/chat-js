@@ -1,8 +1,10 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { useState } from "react";
+import MyContext from "../ContextWrapper";
 import GifPanelWrapper from "./GifPanel";
 
 const InputPanel = () => {
+    const context = useContext(MyContext);
     const [gifPanelState, setGifPanelState] = useState(false);
     const toggleGifPanel = () => {
         setGifPanelState(!gifPanelState);
@@ -19,7 +21,7 @@ const InputPanel = () => {
         };
         inputRef.current.value = "";
         resizeHandler();
-        context.socket.emit(`sendMessage`, { roomId, message });
+        context.socket.emit(`sendMessage`, { roomId: context.roomId, message });
     };
     const resizeHandler = () => {
         console.log(inputRef.current.scrollHeight);
