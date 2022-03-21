@@ -7,19 +7,24 @@ import {
     SearchContextManager,
     SuggestionBar,
 } from "@giphy/react-components";
-const GifPanelWrapper = ({ inputRef }) => {
+const GifPanelWrapper = ({ inputRef, toggleGifPanel }) => {
     return (
         // according to docs it's ok for the key to be exposed,
         // can't prevent sdk components from exposing it anyway
         <SearchContextManager apiKey="k7gCvducuYIyvhzBPxTIkzpsuaxRNGbP">
-            <GifPanel inputRef={inputRef} />
+            <GifPanel toggleGifPanel={toggleGifPanel} inputRef={inputRef} />
         </SearchContextManager>
     );
 };
 
-const GifPanel = ({ inputRef }) => {
+const GifPanel = ({ inputRef, toggleGifPanel }) => {
     const { fetchGifs, term, channelSearch, activeChannel } =
         useContext(SearchContext);
+    const gifClickHandler = (gif, e) => {
+        e.preventDefault();
+        console.log(gif.embed_url);
+        toggleGifPanel();
+    };
     return (
         <div className="gifPanel">
             <SearchBar />
@@ -31,6 +36,7 @@ const GifPanel = ({ inputRef }) => {
                     // textarea width + 2 * 36 which is FIXED width of buttons
                     inputRef.current.offsetWidth + 2 * 36
                 }
+                onGifClick={gifClickHandler}
                 fetchGifs={fetchGifs}
             />
         </div>

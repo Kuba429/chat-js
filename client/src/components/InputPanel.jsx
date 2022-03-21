@@ -61,7 +61,12 @@ const InputPanel = () => {
             <button type="submit">
                 <ion-icon name="arrow-forward-outline"></ion-icon>
             </button>
-            {gifPanelState && <GifPanelWrapper inputRef={inputRef} />}
+            {gifPanelState && (
+                <GifPanelWrapper
+                    toggleGifPanel={toggleGifPanel}
+                    inputRef={inputRef}
+                />
+            )}
         </form>
     );
 };
