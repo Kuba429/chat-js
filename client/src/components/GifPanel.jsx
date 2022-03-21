@@ -24,9 +24,16 @@ const GifPanel = ({ inputRef, toggleGifPanel }) => {
     const context = useContext(MyContext);
     const gifClickHandler = (gif, e) => {
         e.preventDefault();
+        let message = {
+            type: "gif",
+            author: context.usernameState,
+            authorId: context.socket.id,
+            content: gif.images.fixed_width.webp,
+            time: new Date().getTime(),
+        };
         context.socket.emit("sendGif", {
             roomId: context.roomId,
-            gifUrl: gif.embed_url,
+            message,
         });
         toggleGifPanel();
     };

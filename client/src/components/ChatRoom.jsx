@@ -18,8 +18,8 @@ export default function ChatRoom() {
     context.socket.once("receiveMessage", (message) => {
         setMessagesState([message, ...messagesState]);
     });
-    context.socket.once("receiveGif", (data) => {
-        console.log(data);
+    context.socket.once("receiveGif", (message) => {
+        setMessagesState([message, ...messagesState]);
     });
 
     useEffect(() => {

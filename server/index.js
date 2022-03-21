@@ -33,7 +33,7 @@ io.on("connection", (socket) => {
         io.to(data.roomId).emit("receiveMessage", data.message);
     });
     socket.on("sendGif", (data) => {
-        io.to(data.roomId).emit("receiveGif", data.gifUrl);
+        io.to(data.roomId).emit("receiveGif", data.message);
     });
 
     socket.on("checkOnline", (roomId) => {

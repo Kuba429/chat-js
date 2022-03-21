@@ -18,7 +18,14 @@ export default function Message({ messageData }) {
                 <span className="author">{messageData.author}</span>
                 <span className="time">{processedTime}</span>
             </div>
-            <pre className="bottomPart">{messageData.content}</pre>
+            {/* content depends on the type of message */}
+            {messageData.type == "text" ? (
+                <pre className="bottomPart">{messageData.content}</pre>
+            ) : messageData.type == "gif" ? (
+                <img src={messageData.content} alt="" />
+            ) : (
+                <div>aa</div>
+            )}
         </div>
     );
 }

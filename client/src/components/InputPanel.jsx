@@ -14,6 +14,7 @@ const InputPanel = () => {
         e.preventDefault();
         if (inputRef.current.value.length < 1) return;
         let message = {
+            type: "text",
             author: context.usernameState,
             authorId: context.socket.id,
             content: inputRef.current.value,
@@ -21,10 +22,12 @@ const InputPanel = () => {
         };
         inputRef.current.value = "";
         resizeHandler();
-        context.socket.emit(`sendMessage`, { roomId: context.roomId, message });
+        context.socket.emit(`sendMessage`, {
+            roomId: context.roomId,
+            message,
+        });
     };
     const resizeHandler = () => {
-        console.log(inputRef.current.scrollHeight);
         inputRef.current.style.height = "auto";
         if (inputRef.current.scrollHeight <= 150) {
             inputRef.current.style.height =
@@ -48,9 +51,6 @@ const InputPanel = () => {
                 rows="1"
                 onInput={resizeHandler}
                 onKeyDown={keyDownHandler}
-                onScroll={() => {
-                    console.log(inputRef.current.scrollHeight);
-                }}
             />
 
             <button
