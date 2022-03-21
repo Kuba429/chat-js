@@ -10,3 +10,11 @@ ReactDOM.render(
     </BrowserRouter>,
     document.getElementById("root")
 );
+
+// this may help to keep consistent vh on mobile browsers (autohiding address bars)
+const setVh = () => {
+    const vh = window.innerHeight * 0.01;
+    document.querySelector("#root").style.setProperty("--vh", `${vh}px`);
+};
+setVh();
+window.addEventListener("resize", setVh);
