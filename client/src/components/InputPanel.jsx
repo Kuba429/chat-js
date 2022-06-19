@@ -9,11 +9,11 @@ const InputPanel = () => {
     const toggleGifPanel = () => {
         setGifPanelState(!gifPanelState);
     };
+    const [fileState, setFileState] = useState(null);
     const inputRef = useRef(null);
-    const fileInputRef = useRef(null);
     const submitHandler = (e) => {
         e.preventDefault();
-        const image = fileInputRef.current.files[0];
+        const image = fileState; // for some reason passing state directly causes problems; have to dereference
         if (inputRef.current.value.length < 1 && !image) return;
         let message = {
             type: "text",
@@ -23,12 +23,13 @@ const InputPanel = () => {
             content: inputRef.current.value,
             time: new Date().getTime(),
         };
-        inputRef.current.value = "";
-        resizeHandler();
         context.socket.emit(`sendMessage`, {
             roomId: context.roomId,
             message,
         });
+        setFileState(null);
+        inputRef.current.value = "";
+        resizeHandler();
     };
     const resizeHandler = () => {
         inputRef.current.style.height = "auto";
@@ -44,6 +45,10 @@ const InputPanel = () => {
             submitHandler(e);
         }
     };
+    const handleFileInput = (e) => {
+        setFileState(e.target.files[0]);
+    };
+
     return (
         <form className="inputPanel" onSubmit={submitHandler}>
             <textarea
@@ -57,7 +62,11 @@ const InputPanel = () => {
             />
             <label className="panel-btn">
                 <ion-icon name="image-outline"></ion-icon>
-                <input accept="image/*" ref={fileInputRef} type="file" />
+                <input
+                    onChange={handleFileInput}
+                    accept="image/*"
+                    type="file"
+                />
             </label>
 
             <button
