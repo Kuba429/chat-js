@@ -21,6 +21,11 @@
             opacity: 60%;
         }
     }
+    .bottomPart {
+        img {
+            object-fit: contain;
+        }
+    }
 }
 
 .message.own {
