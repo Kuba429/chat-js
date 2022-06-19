@@ -1,7 +1,9 @@
 import { useContext, useRef } from "react";
 import { useState } from "react";
 import MyContext from "../ContextWrapper";
+import { toBase64 } from "./ChatRoom";
 import GifPanelWrapper from "./GifPanel";
+import UploadedImagePreview from "./UploadedImagePreview";
 
 const InputPanel = () => {
     const context = useContext(MyContext);
@@ -10,6 +12,11 @@ const InputPanel = () => {
         setGifPanelState(!gifPanelState);
     };
     const [fileState, setFileState] = useState(null);
+    const [fileBase64, setFileBase64] = useState(null); // for file preview; might change the way it's handled later if it causes too much latency; not in it's component to avoid unnecesary memory allocation as the component remounts on fileState change anyway
+    const removeUploadedImage = () => {
+        setFileState(null);
+        setFileBase64(null);
+    }; // might make a custom hook later
     const inputRef = useRef(null);
     const submitHandler = (e) => {
         e.preventDefault();
@@ -28,6 +35,7 @@ const InputPanel = () => {
             message,
         });
         setFileState(null);
+        setFileBase64(null);
         inputRef.current.value = "";
         resizeHandler();
     };
@@ -45,8 +53,10 @@ const InputPanel = () => {
             submitHandler(e);
         }
     };
-    const handleFileInput = (e) => {
+    const handleFileInput = async (e) => {
         setFileState(e.target.files[0]);
+        const base64 = await toBase64(e.target.files[0]);
+        setFileBase64(base64);
     };
 
     return (
@@ -83,6 +93,13 @@ const InputPanel = () => {
                 <GifPanelWrapper
                     toggleGifPanel={toggleGifPanel}
                     inputRef={inputRef}
+                />
+            )}
+
+            {fileState && (
+                <UploadedImagePreview
+                    fileBase64={fileBase64}
+                    removeUploadedImage={removeUploadedImage}
                 />
             )}
         </form>

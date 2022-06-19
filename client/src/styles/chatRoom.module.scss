@@ -49,6 +49,44 @@
             margin: auto;
         }
     }
+    .uploaded-image-preview {
+        background-color: $light;
+        position: absolute;
+        width: 40vw;
+        max-height: 60vh;
+        max-width: 100%;
+        bottom: 140%;
+        right: 0;
+        padding: 1rem;
+        border-radius: 5px;
+        overflow: hidden;
+        img {
+            height: 100%;
+            width: 100%;
+        }
+        .overlay {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            content: "Click to remove";
+            background-color: $dark;
+            cursor: pointer;
+            height: 100%;
+            width: 100%;
+            color: $light;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: all ease 0.3s;
+        }
+        &:hover {
+            .overlay {
+                opacity: 100%;
+            }
+        }
+    }
     .inputPanel {
         position: relative;
         height: fit-content;
