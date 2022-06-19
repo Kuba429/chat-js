@@ -12,7 +12,7 @@ const GifPanelWrapper = ({ inputRef, toggleGifPanel }) => {
     return (
         // according to docs it's ok for the key to be exposed,
         // can't prevent sdk components from exposing it anyway
-        <SearchContextManager apiKey="k7gCvducuYIyvhzBPxTIkzpsuaxRNGbP">
+        <SearchContextManager apiKey={import.meta.env.VITE_GIPHY_API_KEY}>
             <GifPanel toggleGifPanel={toggleGifPanel} inputRef={inputRef} />
         </SearchContextManager>
     );
