@@ -10,11 +10,14 @@ const InputPanel = () => {
         setGifPanelState(!gifPanelState);
     };
     const inputRef = useRef(null);
+    const fileInputRef = useRef(null);
     const submitHandler = (e) => {
         e.preventDefault();
-        if (inputRef.current.value.length < 1) return;
+        const image = fileInputRef.current.files[0];
+        if (inputRef.current.value.length < 1 && !image) return;
         let message = {
             type: "text",
+            image: image,
             author: context.usernameState,
             authorId: context.socket.id,
             content: inputRef.current.value,
@@ -52,15 +55,19 @@ const InputPanel = () => {
                 onInput={resizeHandler}
                 onKeyDown={keyDownHandler}
             />
+            <label className="panel-btn">
+                <ion-icon name="image-outline"></ion-icon>
+                <input accept="image/*" ref={fileInputRef} type="file" />
+            </label>
 
             <button
                 type="button"
-                className={gifPanelState ? "active" : ""}
+                className={`panel-btn ${gifPanelState ? "active" : ""}`}
                 onClick={toggleGifPanel}
             >
                 <ion-icon name="sparkles-outline"></ion-icon>
             </button>
-            <button type="submit">
+            <button className="panel-btn" type="submit">
                 <ion-icon name="arrow-forward-outline"></ion-icon>
             </button>
             {gifPanelState && (

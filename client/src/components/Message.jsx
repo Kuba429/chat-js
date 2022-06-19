@@ -11,7 +11,6 @@ export default function Message({ messageData }) {
     if (minute.length < 2) minute = "0" + minute;
     // const processedTime = `${hour}:${minute}`;
     const processedTime = hour + ":" + minute;
-
     return (
         <div className={`message  ${isOwn ? "own" : ""}`}>
             <div className="upperPart">
@@ -20,7 +19,10 @@ export default function Message({ messageData }) {
             </div>
             {/* content depends on the type of message */}
             {messageData.type == "text" ? (
-                <pre className="bottomPart">{messageData.content}</pre>
+                <>
+                    {messageData.image && <img src={messageData.image} />}
+                    <pre className="bottomPart">{messageData.content}</pre>
+                </>
             ) : messageData.type == "gif" ? (
                 <img src={messageData.content} alt="" />
             ) : (

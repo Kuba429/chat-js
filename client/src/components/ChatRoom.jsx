@@ -14,7 +14,8 @@ export default function ChatRoom() {
 
     context.socket.emit("join", roomId);
     context.socket.off("receiveMessage");
-    context.socket.once("receiveMessage", (message) => {
+    context.socket.once("receiveMessage", async (message) => {
+        if (message.image) message.image = await toBase64(message.image); // convert img file to base64 so it can be used as src on image element
         setMessagesState([message, ...messagesState]);
     });
 
@@ -43,3 +44,11 @@ export default function ChatRoom() {
         </>
     );
 }
+
+const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(new Blob([file]));
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+    });
